@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f0e7">
+<meta name="description" content="The creative portfolio of Nitheyashree M. Art, mandala, calligraphy, photography and material experiments.">
+<title>Nitheyashree M. - Creative Portfolio</title>
+<style>
+:root{--paper:#f5f0e7;--paper2:#eee5d7;--ink:#25231f;--muted:#726b60;--rust:#a75c43;--olive:#68705a;--line:#d8cdbd;--white:#fffdf8;--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:86px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,input,textarea{font:inherit}
+.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+.eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);font-weight:700}
+.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.04em}
+.nav{position:sticky;top:0;z-index:10;background:rgba(245,240,231,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-family:var(--serif);font-size:1.35rem}
+.brand span{color:var(--rust)}
+.nav-links{display:flex;gap:25px;align-items:center;font-size:.83rem}
+.nav-links a:hover{color:var(--rust)}
+.menu-btn{display:none;border:1px solid var(--line);background:transparent;padding:7px 12px;border-radius:30px}
+.hero{padding:72px 0 76px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:.97fr 1.03fr;gap:7%;align-items:center}
+.hero h1{font-size:clamp(3.5rem,8vw,7.4rem);line-height:.91;margin:18px 0 25px}
+.hero h1 em{color:var(--rust);font-weight:400}
+.hero-copy{font-size:1.05rem;color:var(--muted);max-width:480px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 19px;border-radius:2px;border:1px solid var(--ink);font-size:.82rem;transition:.2s}
+.btn.primary{background:var(--ink);color:var(--white)}
+.btn:hover{transform:translateY(-2px)}
+.hero-art{position:relative;padding:24px 22px 38px 26px}
+.hero-art:before{content:"";position:absolute;inset:0 13% 0 0;background:var(--paper2);transform:rotate(-3deg);z-index:0}
+.hero-page-stack{position:relative;z-index:1;background:#fffdf8;padding:10px;box-shadow:0 15px 35px #392b1915;transform:rotate(1deg);transition:transform .5s ease}
+.hero-page-stack:hover{transform:rotate(0deg) translateY(-3px)}
+.hero-page-stack .hero-page{display:block;width:100%;height:510px;object-fit:cover;object-position:center 42%;filter:grayscale(100%);border:1px solid #eee5d7;transition:opacity .8s ease,transform 1.2s ease}
+.hero-page-stack .hero-page.fading{opacity:.25;transform:scale(.985)}
+.art-note{position:absolute;right:-5px;bottom:8px;background:var(--rust);color:white;padding:13px 18px;font-family:var(--serif);font-style:italic;font-size:1.1rem;transform:rotate(-3deg);z-index:3}
+.marquee{border-block:1px solid var(--line);padding:14px 0;white-space:nowrap;overflow:hidden;color:var(--olive);font-family:var(--serif);font-size:1.15rem;letter-spacing:.06em}
+.marquee div{word-spacing:18px;text-align:center}
+section{padding:88px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:34px}
+.section-head h2{font-size:clamp(2.5rem,5vw,4.3rem);line-height:1;margin:9px 0 0}
+.section-head p{max-width:380px;color:var(--muted);margin:0}
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:8%;align-items:start}
+.about-photo{position:relative;max-width:390px;margin:0 auto}
+.about-photo img{display:block;width:100%;height:auto;max-height:620px;object-fit:cover;object-position:center 35%;border:1px solid var(--line);padding:8px;background:var(--white);box-shadow:0 12px 35px rgba(70,55,35,.09);transform:rotate(-2deg)}
+.about-photo:after{content:"a little glimpse of my world ♡";display:block;text-align:center;margin-top:18px;color:var(--muted);font-family:var(--serif);font-style:italic;font-size:1rem}
+.about-text{min-width:0;font-family:var(--serif);font-size:clamp(1.35rem,2.2vw,1.9rem);line-height:1.5}
+.about-text p{margin-top:0}
+.small-copy{font-family:var(--sans);font-size:.95rem;color:var(--muted);line-height:1.8}
+.about-stamp{border:1px solid var(--rust);border-radius:50%;width:190px;height:190px;display:grid;place-items:center;text-align:center;margin:18px auto;font-family:var(--serif);font-size:1.3rem;color:var(--rust);transform:rotate(-10deg)}
+.gallery-section{background:var(--paper2)}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.work-card{position:relative;min-height:280px;background:var(--white);border:1px solid var(--line);overflow:hidden;grid-column:span 4}
+.work-card.tall{grid-row:span 2;min-height:570px;grid-column:span 5}
+.work-card.wide{grid-column:span 7}
+.work-card.landscape{grid-column:span 7;grid-row:auto;min-height:330px}
+.work-card.landscape img{min-height:330px;object-fit:cover}
+.work-card img{width:100%;height:100%;min-height:280px;display:block;object-fit:cover;transition:transform .5s;filter:saturate(.7)}
+.work-card:hover img{transform:scale(1.035)}
+.work-card.tall img{min-height:570px}
+.work-card.wide img{min-height:280px}
+.work-info{position:absolute;inset:auto 0 0;background:linear-gradient(transparent,rgba(22,20,17,.83));color:white;padding:50px 22px 20px}
+.work-info h3{font:1.65rem var(--serif);margin:0}
+.work-info p{margin:3px 0 0;font-size:.8rem;color:#f0e7da}
+.empty-art{height:100%;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:25px;text-align:center;background:repeating-linear-gradient(135deg,#f8f3e9,#f8f3e9 10px,#f1e8d9 10px,#f1e8d9 11px);color:var(--muted)}
+.empty-art .symbol{font:4rem var(--serif);color:var(--rust);line-height:1}
+.empty-art h3{font:1.4rem var(--serif);color:var(--ink);margin:12px 0 5px}
+.empty-art p{font-size:.8rem;max-width:230px;margin:0}
+.upload-label{display:inline-block;border-bottom:1px solid var(--rust);color:var(--rust);font-size:.78rem;margin-top:13px;cursor:pointer}
+.upload-label input{display:none}
+.experiment-grid{display:grid;grid-template-columns:1fr 1fr;gap:7%;align-items:center}
+.experiment-visual{background:#e8dfd0;padding:22px;transform:rotate(-2deg)}
+.experiment-visual .empty-art{min-height:400px;background:var(--paper)}
+.experiment-visual img{width:100%;display:block;max-height:500px;object-fit:cover}
+.experiment-copy h2{font-size:clamp(2.7rem,5vw,4.8rem);line-height:1;margin:14px 0 22px}
+.experiment-copy p{color:var(--muted)}
+.steps{list-style:none;padding:0;margin:24px 0}
+.steps li{border-top:1px solid var(--line);padding:11px 0;display:flex;gap:18px}
+.steps b{font:1.2rem var(--serif);color:var(--rust)}
+
+/* Video gallery and expanded player */
+.video-section{background:#282923;color:#f7f0e6}
+.video-section .eyebrow{color:#d5a18a}
+.video-section .section-head p{color:#c3bcb0}
+.video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.video-card{min-width:0;border:1px solid #5b5a50;background:#33342d;padding:12px}
+.video-frame{width:100%;aspect-ratio:4/3;background:#171812;position:relative;overflow:hidden}
+.video-frame video{display:block;width:100%;height:100%;object-fit:contain;background:#171812;cursor:pointer}
+.video-card h3{font:1.35rem var(--serif);margin:14px 0 4px}
+.video-card p{color:#c3bcb0;font-size:.83rem;margin:0 0 12px}
+.video-open-btn{display:block;width:100%;margin-top:10px;padding:10px;background:transparent;color:#e4b39b;border:1px solid #e4b39b;cursor:pointer}
+.video-open-btn:hover{background:#e4b39b;color:#282923}
+.video-lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.95);align-items:center;justify-content:center;padding:60px 20px 20px}
+.video-lightbox.open{display:flex}
+.video-lightbox video{display:block;width:100%;height:100%;max-width:1400px;max-height:calc(100vh - 90px);object-fit:contain}
+.video-lightbox-close{position:absolute;top:14px;right:18px;padding:10px 16px;background:#f5f0e7;color:#25231f;border:0;cursor:pointer;font-size:1rem}
+.video-lightbox:focus{outline:none}
+
+.notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.note{padding:24px;border-top:2px solid var(--rust);background:#fbf8f1}
+.note .num{font:2rem var(--serif);color:var(--rust)}
+.note h3{font:1.5rem var(--serif);margin:10px 0}
+.note p{font-size:.9rem;color:var(--muted);margin:0}
+.contact{background:#e9dfd0}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:8%;align-items:center}
+.contact h2{font-size:clamp(3rem,7vw,6rem);line-height:.95;margin:12px 0 20px}
+.contact p{color:var(--muted);max-width:500px}
+.contact-card{border:1px solid #cdbda8;padding:26px;background:rgba(255,253,248,.5)}
+.contact-card label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.contact-card input,.contact-card textarea{width:100%;border:0;border-bottom:1px solid #cdbda8;background:transparent;padding:12px 0;margin-bottom:18px;outline:none;color:var(--ink)}
+.contact-card textarea{resize:vertical;min-height:90px}
+.contact-card button{cursor:pointer}
+.footer{padding:24px 0;background:#e9dfd0;border-top:1px solid #cdbda8;font-size:.8rem;color:var(--muted)}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.lightbox{position:fixed;inset:0;background:#171612ed;display:none;align-items:center;justify-content:center;z-index:20;padding:30px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(90vw,900px);max-height:85vh;object-fit:contain;border:8px solid var(--white)}
+.lightbox button{position:absolute;top:20px;right:24px;background:none;border:1px solid white;color:white;padding:8px 14px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-page-stack .hero-page{transition:none!important}}
+@media(max-width:800px){
+  .nav-inner{height:66px}
+  .menu-btn{display:block}
+  .nav-links{display:none;position:absolute;top:66px;left:0;right:0;background:var(--paper);padding:18px 24px 24px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+  .nav-links.open{display:flex}
+  .hero{padding:48px 0 55px}
+  .hero-grid,.about-grid,.experiment-grid,.contact-grid{grid-template-columns:1fr;gap:35px}
+  .hero-art{max-width:520px;margin:auto;width:100%}
+  .hero-page-stack .hero-page{height:420px}
+  .section-head{display:block}
+  .section-head p{margin-top:15px}
+  .work-card,.work-card.tall,.work-card.wide,.work-card.landscape{grid-column:span 6;grid-row:auto;min-height:300px}
+  .work-card.tall,.work-card.tall img{min-height:380px}
+  .video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .notes-grid{grid-template-columns:1fr 1fr}
+  .about-stamp{margin:0 auto}
+  .experiment-visual{order:2}
+  .contact-grid{gap:25px}
+}
+@media(max-width:520px){
+  .wrap{width:min(100% - 28px,1160px)}
+  section{padding:62px 0}
+  .hero h1{font-size:3.8rem}
+  .hero-art{padding:12px 12px 30px}
+  .hero-page-stack .hero-page{height:350px}
+  .work-card,.work-card.tall,.work-card.wide,.work-card.landscape{grid-column:span 12;min-height:320px}
+  .work-card.tall,.work-card.tall img{min-height:420px}
+  .video-grid,.notes-grid{grid-template-columns:1fr}
+  .marquee div{font-size:1rem}
+  .footer-inner{display:block}
+  .footer-inner span{display:block;margin:5px 0}
+  .video-lightbox{padding:60px 8px 12px}
+  .video-lightbox video{max-height:calc(100vh - 80px)}
+}
+/* Photography gallery and a single continuous photo-scroll animation */
+.photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.photo-card{margin:0;background:var(--white);border:1px solid var(--line);padding:10px;overflow:hidden}
+.photo-card img{display:block;width:100%;height:370px;object-fit:cover;transition:transform .5s;cursor:zoom-in}
+.photo-card:hover img{transform:scale(1.025)}
+.photo-card figcaption{font:1.2rem var(--serif);padding:12px 4px 3px}
+.photo-card p{font-size:.8rem;color:var(--muted);margin:0 4px 6px}
+.photo-scroll-section{padding:28px 0 72px;overflow:hidden;background:var(--paper)}
+.photo-scroll-label{padding:0 0 16px;color:var(--muted);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase}
+.photo-track-window{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.photo-track{display:flex;width:max-content;gap:14px;animation:photoDrift 48s linear infinite}
+.photo-track:hover{animation-play-state:paused}
+.photo-track img{width:190px;height:235px;object-fit:cover;border:7px solid var(--white);box-shadow:0 6px 20px #392b1912;flex:none}
+@keyframes photoDrift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.photo-track{animation:none;overflow-x:auto}.photo-track-window{overflow-x:auto;mask-image:none}}
+@media(max-width:800px){.photo-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.photo-card img{height:320px}.photo-track img{width:160px;height:200px}}
+@media(max-width:520px){.photo-gallery{grid-template-columns:1fr}.photo-card img{height:360px}.photo-track img{width:145px;height:180px}}
+@media(max-width:700px){.about-grid{grid-template-columns:1fr;gap:32px}.about-photo{max-width:min(78%,340px)}.about-photo img{max-height:520px}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home">Nitheyashree <span>M.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">Menu ☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a><a href="#work">My work</a><a href="#videos">Videos</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div class="hero-intro">
+      <div class="eyebrow">A creative journal · 2026</div>
+      <h1 class="serif">Finding beauty<br>in the <em>everyday.</em></h1>
+      <p class="hero-copy">I’m Nitheyashree M., an engineering student with a curious mind and a creative soul. This is a little space for the things I make, notice, and learn along the way.</p>
+      <div class="hero-actions"><a class="btn primary" href="#work">Explore my work ↘</a><a class="btn" href="#about">A little about me</a></div>
+    </div>
+    <div class="hero-art" aria-label="A gentle slideshow of selected artwork and photography">
+      <div class="hero-page-stack" id="heroPageStack"><img id="heroFlipImage" class="hero-page" src="assets/mandala-layered.png" alt="Hand-drawn black ink mandala artwork in a sketchbook"></div>
+      <div class="art-note">made slowly, by hand ♡</div>
+    </div>
+  </div>
+</section>
+<div class="marquee"><div>✳ art &nbsp; · &nbsp; patterns &nbsp; · &nbsp; lettering &nbsp; · &nbsp; light &nbsp; · &nbsp; materials &nbsp; · &nbsp; little discoveries &nbsp; ✳</div></div>
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">A little introduction</div><h2 class="serif">Hello, I'm Nitheyashree.</h2></div><p>Engineering is how I learn to solve problems. Art is one of the ways I learn to see them differently.</p></div>
+    <div class="about-grid">
+      <div class="about-photo"><img src="assets/about-nitheyashree.jpg" alt="Illustrated portrait of Nitheyashree in a warm, flower-filled creative studio"></div>
+      <div class="about-text">
+        <p>I’m a 21-year-old engineering student who finds joy in exploring different forms of art and design. I’m drawn to the beauty of simple things and enjoy expressing ideas through creativity, observation, and hands-on experimentation.</p>
+        <p class="small-copy">My creative interests include mandala art, drawing, calligraphy, photography, and design. Each one gives me a different way to explore details, patterns, perspectives, and the world around me.</p>
+        <p class="small-copy">I see creativity as a process of curiosity, experimentation, and learning. I hope to keep discovering new possibilities in everyday and discarded materials, transforming simple resources into meaningful creative expressions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="gallery-section" id="work">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Selected explorations</div><h2 class="serif">Things made by hand.</h2></div><p>A growing collection of patterns, lines, words, and visual moments. Select a photo to view it larger, or add more of your own work.</p></div>
+    <div class="gallery" id="gallery">
+      <article class="work-card tall" data-image="assets/mandala-layered.png">
+        <img src="assets/mandala-layered.png" alt="Layered black ink mandala with fine dot details on a sketchbook page">
+        <div class="work-info"><h3>Mandala studies</h3><p>Repetition, rhythm, patience, and detail</p></div>
+      </article>
+      <article class="work-card" data-image="assets/mandala-feather-details.png">
+        <img src="assets/mandala-feather-details.png" alt="Intricate mandala with feather-like decorative details">
+        <div class="work-info"><h3>Patterns & details</h3><p>Exploring line, shape, and symmetry</p></div>
+      </article>
+      <article class="work-card" data-image="assets/mandala-quote-cover.png">
+        <img src="assets/mandala-quote-cover.png" alt="Mandala sketchbook cover with the words The best is yet to come">
+        <div class="work-info"><h3>Art with words</h3><p>A mandala paired with hand lettering</p></div>
+      </article>
+      <article class="work-card" data-image="assets/vintage-tamil-lettering.png">
+        <img src="assets/vintage-tamil-lettering.png" alt="Tamil handwritten lettering and small headphone illustration on vintage paper">
+        <div class="work-info"><h3>Vintage Tamil lettering</h3><p>Handwritten words and a nostalgic mood</p></div>
+      </article>
+      <article class="work-card" data-image="assets/calligraphy-lettering.png">
+        <img src="assets/calligraphy-lettering.png" alt="Bold handwritten calligraphy practice on brown paper">
+        <div class="work-info"><h3>Calligraphy</h3><p>Expressive lettering and pen strokes</p></div>
+      </article>
+      <article class="work-card" data-image="assets/line-art-portrait.png">
+        <img src="assets/line-art-portrait.png" alt="Minimal line drawing of two people in a portrait frame">
+        <div class="work-info"><h3>Line art</h3><p>Simple outlines that tell a story</p></div>
+      </article>
+      <article class="work-card landscape" data-image="assets/affirmation-notes.png">
+        <img src="assets/affirmation-notes.png" alt="Handwritten positive affirmation notes pinned to a green board">
+        <div class="work-info"><h3>Little reminders</h3><p>Words, color, and everyday encouragement</p></div>
+      </article>
+      <article class="work-card wide" data-image="assets/book-illustration.png">
+        <img src="assets/book-illustration.png" alt="Black ink illustration of an open book with handwritten Tamil text">
+        <div class="work-info"><h3>Illustration & storytelling</h3><p>A small book illustration with handwritten Tamil text</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="photography">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Through my lens</div><h2 class="serif">Photography.</h2></div><p>Small moments, shifting light, and details that make me pause. A few scenes I wanted to keep.</p></div>
+    <div class="photo-gallery">
+      <figure class="photo-card"><img src="assets/photography-ferris-wheel.png" alt="Colourful Ferris wheel glowing against a dramatic night sky"><figcaption>Colour after dark</figcaption><p>Light, movement, and the energy of the evening.</p></figure>
+      <figure class="photo-card"><img src="assets/photography-crescent-moon.png" alt="Crescent moon in a blue twilight sky framed by dark tree silhouettes"><figcaption>A little piece of the sky</figcaption><p>Quiet skies, soft clouds, and a crescent moon.</p></figure>
+      <figure class="photo-card"><img src="assets/photography-banana-leaves.png" alt="Golden sunlight filtering through broad green banana leaves"><figcaption>Sunlight through leaves</figcaption><p>Finding texture, colour, and warmth in nature.</p></figure>
+    </div>
+  </div>
+</section>
+<section class="photo-scroll-section" aria-label="A continuously scrolling selection of all portfolio photographs and artwork">
+  <div class="wrap"><div class="photo-scroll-label">A moving visual diary · Hover to pause</div></div>
+  <div class="photo-track-window"><div class="photo-track">
+    <img src="assets/mandala-layered.png" alt="Mandala artwork"><img src="assets/mandala-feather-details.png" alt="Mandala details"><img src="assets/mandala-quote-cover.png" alt="Mandala quote cover"><img src="assets/vintage-tamil-lettering.png" alt="Vintage Tamil lettering"><img src="assets/calligraphy-lettering.png" alt="Calligraphy lettering"><img src="assets/line-art-portrait.png" alt="Line art portrait"><img src="assets/affirmation-notes.png" alt="Little reminder notes"><img src="assets/book-illustration.png" alt="Book illustration"><img src="assets/photography-ferris-wheel.png" alt="Ferris wheel at night"><img src="assets/photography-crescent-moon.png" alt="Crescent moon at twilight"><img src="assets/photography-banana-leaves.png" alt="Sunlight through banana leaves">
+    <img src="assets/mandala-layered.png" alt="" aria-hidden="true"><img src="assets/mandala-feather-details.png" alt="" aria-hidden="true"><img src="assets/mandala-quote-cover.png" alt="" aria-hidden="true"><img src="assets/vintage-tamil-lettering.png" alt="" aria-hidden="true"><img src="assets/calligraphy-lettering.png" alt="" aria-hidden="true"><img src="assets/line-art-portrait.png" alt="" aria-hidden="true"><img src="assets/affirmation-notes.png" alt="" aria-hidden="true"><img src="assets/book-illustration.png" alt="" aria-hidden="true"><img src="assets/photography-ferris-wheel.png" alt="" aria-hidden="true"><img src="assets/photography-crescent-moon.png" alt="" aria-hidden="true"><img src="assets/photography-banana-leaves.png" alt="" aria-hidden="true">
+  </div></div>
+</section>
+
+<section class="video-section" id="videos">
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">Moving moments</div><h2 class="serif">Behind the making.</h2></div><p>A glimpse into my creative process. Click a video to watch it in a larger player.</p></div>
+    <div class="video-grid">
+      <article class="video-card">
+        <div class="video-frame"><video controls playsinline preload="metadata" aria-label="Creative process video"><source src="assets/creative-process-video.mp4" type="video/mp4">Your browser does not support this video.</video></div>
+        <h3>Creative moments</h3><p>A video from my creative explorations.</p>
+        <button class="video-open-btn" type="button">Open large video ↗</button>
+      </article>
+      <article class="video-card">
+        <div class="video-frame"><video controls playsinline preload="metadata" aria-label="Creative process video"><source src="assets/creative-process-video.mp4" type="video/mp4">Your browser does not support this video.</video></div>
+        <h3>Creative moments</h3><p>A closer look at the creative process.</p>
+        <button class="video-open-btn" type="button">Open large video ↗</button>
+      </article>
+      <article class="video-card">
+        <div class="video-frame"><video controls playsinline preload="metadata" aria-label="Creative process video"><source src="assets/creative-process-video.mp4" type="video/mp4">Your browser does not support this video.</video></div>
+        <h3>Creative moments</h3><p>Small ideas, practical trials, and discoveries.</p>
+        <button class="video-open-btn" type="button">Open large video ↗</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="video-lightbox" id="videoLightbox" role="dialog" aria-modal="true" aria-label="Expanded video player" tabindex="-1">
+  <button class="video-lightbox-close" id="closeVideoLightbox" type="button">Close ✕</button>
+  <video id="largeVideo" controls playsinline preload="metadata">
+    Your browser does not support this video.
+  </video>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><div><div class="eyebrow">What guides me</div><h2 class="serif">The process matters.</h2></div></div>
+    <div class="notes-grid">
+      <article class="note"><div class="num">01</div><h3>Look closer</h3><p>Find beauty in ordinary objects, overlooked details, textures, and patterns.</p></article>
+      <article class="note"><div class="num">02</div><h3>Try things out</h3><p>Let curiosity lead. Experiment with tools, techniques, and materials without needing everything to be perfect.</p></article>
+      <article class="note"><div class="num">03</div><h3>Keep learning</h3><p>Let every sketch, photograph, and experiment teach me something new.</p></article>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div><div class="eyebrow">The next page is unwritten</div><h2 class="serif">Let's stay<br>curious.</h2><p>This portfolio is a work in progress, just like creativity itself. I’m always open to learning, exploring new ideas, and finding inspiration in unexpected places.</p><p class="small-copy">Have a project, idea, or creative thought to share? I’d love to hear from you.</p></div>
+    <form class="contact-card" id="contactForm">
+      <label for="visitorName">Your name</label><input id="visitorName" name="name" placeholder="What should I call you?" required>
+      <label for="visitorEmail">Your email</label><input id="visitorEmail" name="email" type="email" placeholder="you@example.com" required>
+      <label for="visitorMessage">A little message</label><textarea id="visitorMessage" name="message" placeholder="Tell me what’s on your mind..." required></textarea>
+      <button class="btn primary" type="submit">Prepare an email ↗</button>
+      <p class="small-copy" style="font-size:.75rem;margin-bottom:0">This opens Gmail with the message prepared. You can review it before sending.</p>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Nitheyashree M. · DsignX ♡</span><span>Art · Design · Photography · Experiments</span><a href="#home">Back to top ↑</a></div></footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Artwork preview">
+  <button id="closeLightbox" type="button">Close ✕</button>
+  <img id="lightboxImg" src="" alt="Artwork enlarged">
+</div>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Gentle fade slideshow.
+const heroFlipImage = document.getElementById('heroFlipImage');
+const heroPages = [
+  {src:'assets/mandala-layered.png',alt:'Hand-drawn black ink mandala artwork in a sketchbook'},
+  {src:'assets/mandala-quote-cover.png',alt:'Mandala artwork with hand-lettered quote'},
+  {src:'assets/line-art-portrait.png',alt:'Minimal line-art portrait drawing'},
+  {src:'assets/photography-crescent-moon.png',alt:'Crescent moon in a blue twilight sky'},
+  {src:'assets/photography-banana-leaves.png',alt:'Golden sunlight filtering through banana leaves'},
+  {src:'assets/photography-ferris-wheel.png',alt:'Colourful Ferris wheel glowing at night'},
+  {src:'assets/calligraphy-lettering.png',alt:'Handmade calligraphy lettering'}
+];
+let heroPageIndex = 0;
+if (heroFlipImage && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  window.setInterval(() => {
+    heroFlipImage.classList.add('fading');
+    window.setTimeout(() => {
+      heroPageIndex = (heroPageIndex + 1) % heroPages.length;
+      heroFlipImage.src = heroPages[heroPageIndex].src;
+      heroFlipImage.alt = heroPages[heroPageIndex].alt;
+      heroFlipImage.classList.remove('fading');
+    }, 450);
+  }, 4500);
+}
+
+// Artwork and photography lightbox.
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+function attachLightbox(img) {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightbox.classList.add('open');
+  });
+}
+document.querySelectorAll('.work-card img, .photo-card img').forEach(attachLightbox);
+document.getElementById('closeLightbox').addEventListener('click', () => lightbox.classList.remove('open'));
+lightbox.addEventListener('click', event => {
+  if (event.target === lightbox) lightbox.classList.remove('open');
+});
+
+// Open a video in a large overlay player.
+const videoLightbox = document.getElementById('videoLightbox');
+const largeVideo = document.getElementById('largeVideo');
+const closeVideoLightbox = document.getElementById('closeVideoLightbox');
+let previousVideo = null;
+
+function openLargeVideo(video) {
+  if (!video) return;
+  const source = video.querySelector('source');
+  const videoURL = source ? source.src : (video.currentSrc || video.src);
+  if (!videoURL) return;
+
+  previousVideo = video;
+  video.pause();
+  largeVideo.src = videoURL;
+  largeVideo.load();
+  videoLightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  videoLightbox.focus();
+
+  // Browsers may require the viewer to press Play manually.
+  largeVideo.play().catch(() => {});
+}
+
+function closeLargeVideo() {
+  largeVideo.pause();
+  largeVideo.removeAttribute('src');
+  largeVideo.load();
+  videoLightbox.classList.remove('open');
+  document.body.style.overflow = '';
+  if (previousVideo) previousVideo.focus();
+}
+
+document.querySelectorAll('.video-card').forEach(card => {
+  const video = card.querySelector('video');
+  const button = card.querySelector('.video-open-btn');
+  if (button) button.addEventListener('click', () => openLargeVideo(video));
+  if (video) video.addEventListener('dblclick', () => openLargeVideo(video));
+});
+closeVideoLightbox.addEventListener('click', closeLargeVideo);
+videoLightbox.addEventListener('click', event => {
+  if (event.target === videoLightbox) closeLargeVideo();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && videoLightbox.classList.contains('open')) closeLargeVideo();
+});
+
+// Optional browser-local image replacement handler, if image-upload controls are added later.
+document.querySelectorAll('.image-upload').forEach(input => {
+  input.addEventListener('change', event => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    const card = input.closest('.work-card');
+    if (!card) return;
+    const old = card.querySelector('.empty-art');
+    const img = document.createElement('img');
+    img.src = URL.createObjectURL(file);
+    img.alt = file.name;
+    card.insertBefore(img, old);
+    if (old) old.remove();
+    const info = document.createElement('div');
+    info.className = 'work-info';
+    const title = document.createElement('h3');
+    title.textContent = file.name.replace(/\.[^.]+$/, '');
+    const p = document.createElement('p');
+    p.textContent = 'Personal work · added in this browser';
+    info.append(title, p);
+    card.append(info);
+    attachLightbox(img);
+    card.removeAttribute('data-placeholder');
+  });
+});
+
+// Contact form opens a prepared Gmail compose window.
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const name = document.getElementById('visitorName').value.trim();
+    const email = document.getElementById('visitorEmail').value.trim();
+    const message = document.getElementById('visitorMessage').value.trim();
+
+    const subject = 'A message for Nitheyashree';
+    const body = `Hi Nitheyashree,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`;
+    const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1' +
+      '&to=' + encodeURIComponent('nitheyashreemathiselvam@gmail.com') +
+      '&su=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+
+    window.open(gmailURL, '_blank', 'noopener');
+  });
+}
+</script>
+</body>
+</html>
